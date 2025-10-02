@@ -16,7 +16,7 @@ export interface Conversation {
   timestamp: number;
 }
 
-const API_KEY = 'AIzaSyDT0QLepq2LxcVUsm5JOkAcTFDGw_Yd4Mo';
+const API_KEY = '*';
 
 class GeminiService {
   private genAI: GoogleGenerativeAI;
