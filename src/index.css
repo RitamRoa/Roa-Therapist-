@@ -1,0 +1,58 @@
+:root {
+  --ion-color-primary: #ffffff;
+  --ion-color-primary-rgb: 255, 255, 255;
+  --ion-color-primary-contrast: #1a1d2e;
+  --ion-color-primary-contrast-rgb: 26, 29, 46;
+  --ion-color-primary-shade: #e0e0e0;
+  --ion-color-primary-tint: #ffffff;
+
+  --ion-background-color: #1a1d2e;
+  --ion-background-color-rgb: 26, 29, 46;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+  
+  /* Accent colors for dark theme */
+  --accent-color: #e94560;
+  --accent-light: #ff6b86;
+  --bg-overlay: rgba(26, 29, 46, 0.85);
+  
+  /* iOS System Font */
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1d2e;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* Mobile viewport fix */
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
+  }
+}
+
+ion-app {
+  background-color: #1a1d2e;
+  position: relative;
+}
+
+ion-content {
+  --background: transparent !important;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

@@ -1,0 +1,690 @@
+/* Header Styling */
+ion-header ion-toolbar {
+  --background: rgba(0, 0, 0, 0.8);
+  --border-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+ion-header ion-title {
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.5px;
+}
+
+ion-header ion-back-button {
+  --color: white;
+  --icon-font-size: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+ion-header ion-button {
+  --color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.notes-content {
+  --background: #1a1d2e;
+  background-image: url('/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.notes-content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.notes-container {
+  padding: 20px 16px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .notes-content {
+    background-attachment: scroll;
+  }
+  
+  .notes-content::before {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  
+  .notes-container {
+    padding: 16px 14px;
+    padding-bottom: 100px;
+  }
+}
+
+.empty-notes {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 80px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.empty-notes h2 {
+  font-size: 34px;
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.empty-notes p {
+  font-size: 17px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.ai-note {
+  background: rgba(233, 69, 96, 0.15);
+  border: none;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin: 16px auto;
+  max-width: 320px;
+  color: #e94560 !important;
+  font-weight: 500;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* Note Cards */
+.note-card {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  transform: translateZ(0);
+  animation: slideInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.note-card:active {
+  transform: scale(0.98);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.note-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.4px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.note-date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.task-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.task-summary ion-icon {
+  font-size: 16px;
+  color: #e94560;
+}
+
+.note-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.note-actions ion-button {
+  --color: #ffffff;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  height: 32px;
+  font-size: 15px;
+}
+
+.note-actions ion-button:active {
+  opacity: 0.5;
+}
+
+.note-actions ion-button.delete-button {
+  --color: #ff3b3b;
+}
+
+.note-body {
+  padding: 16px;
+}
+
+.note-content {
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.note-metadata {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 12px;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* Tasks Section */
+.tasks-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tasks-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.add-task-button {
+  --color: #e94560;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  height: 28px;
+  font-size: 24px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  gap: 12px;
+  animation: taskSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.2s ease;
+}
+
+.task-item:hover {
+  opacity: 0.8;
+}
+
+@keyframes taskSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.task-checkbox {
+  --size: 22px;
+  --checkmark-color: white;
+  --border-width: 1.5px;
+  --border-color: rgba(255, 255, 255, 0.3);
+  --border-radius: 50%;
+  --background-checked: #e94560;
+  margin: 0;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.task-text.completed {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: line-through;
+}
+
+.delete-task-button {
+  --color: #ff3b3b;
+  --padding-start: 4px;
+  --padding-end: 4px;
+  height: 28px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.delete-task-button:active {
+  opacity: 0.5;
+}
+
+/* Floating Action Button */
+.fab-button {
+  --background: linear-gradient(135deg, #e94560 0%, #d63653 100%);
+  --border-radius: 50%;
+  --box-shadow: 0 6px 24px rgba(233, 69, 96, 0.6);
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+}
+
+.fab-button:hover {
+  --box-shadow: 0 8px 32px rgba(233, 69, 96, 0.7);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.fab-button:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+.fab-button ion-icon {
+  font-size: 28px;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Header Styles */
+ion-header ion-toolbar {
+  --background: rgba(0, 0, 0, 0.8);
+  --border-color: rgba(255, 255, 255, 0.15);
+  --border-width: 0 0 0.5px 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+ion-header ion-title {
+  font-weight: 600;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+ion-header ion-button {
+  --color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+ion-header ion-button:hover {
+  --color: #e94560;
+}
+
+/* Modal Styles */
+ion-modal {
+  --background: transparent;
+  --backdrop-opacity: 0.3;
+}
+
+ion-modal::part(content) {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+  margin: 60px 0 0 0;
+  padding-bottom: 30px;
+  animation: slideUpModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-modal ion-toolbar {
+  --background: rgba(0, 0, 0, 0.4);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-width: 0 0 1px 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+ion-modal ion-title {
+  font-weight: 600;
+  font-size: 22px;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Note Form Container */
+.note-form {
+  padding: 0;
+}
+
+.note-modal-content {
+  --background: transparent;
+}
+
+.modal-content {
+  padding: 28px 24px 20px 24px;
+  background: transparent;
+}
+
+/* Note Title Input */
+.note-title-input {
+  --background: transparent;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 18px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 24px;
+}
+
+.note-title-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+/* Note Content Input */
+.note-content-input {
+  --background: rgba(255, 255, 255, 0.08);
+  --padding-start: 18px;
+  --padding-end: 18px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-weight: 400;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  min-height: 160px;
+  margin-bottom: 28px;
+}
+
+.note-content-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+ion-item {
+  --background: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-radius: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 60px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+ion-label {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+ion-input, ion-textarea {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-weight: 400;
+}
+
+ion-input::placeholder, ion-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+ion-button.modal-action-button {
+  --border-radius: 20px;
+  --background: linear-gradient(135deg, #e94560 0%, #d63653 100%);
+  --box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+  height: 58px;
+  margin-top: 28px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  text-transform: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+ion-button.modal-action-button:hover {
+  --box-shadow: 0 8px 28px rgba(233, 69, 96, 0.6);
+  transform: translateY(-2px);
+}
+
+ion-button.modal-action-button:active {
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+/* Modal Tasks Section */
+.tasks-section {
+  margin-top: 12px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tasks-section h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.add-task {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.add-task ion-input {
+  flex: 1;
+  --padding-start: 16px;
+  --padding-end: 12px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-size: 16px;
+  color: #ffffff;
+  --background: transparent;
+}
+
+.add-task ion-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.add-task ion-button {
+  --background: linear-gradient(135deg, #e94560 0%, #d63653 100%);
+  --background-hover: #d63653;
+  --border-radius: 14px;
+  --box-shadow: 0 2px 12px rgba(233, 69, 96, 0.4);
+  --padding-start: 18px;
+  --padding-end: 18px;
+  height: 50px;
+  margin: 0;
+  min-width: 50px;
+}
+
+.tasks-list {
+  background: transparent;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.tasks-list .task-item {
+  --background: rgba(255, 255, 255, 0.06);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-radius: 12px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --inner-padding-end: 0;
+  --min-height: 48px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.tasks-list .task-item ion-checkbox {
+  --size: 24px;
+  --border-radius: 50%;
+  --border-width: 2px;
+  --border-color: rgba(255, 255, 255, 0.4);
+  --background-checked: #e94560;
+  --checkmark-color: white;
+  margin-right: 12px;
+}
+
+.tasks-list .task-item ion-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+
+.completed-task {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+/* Alert Styles */
+ion-alert {
+  --background: rgba(26, 29, 46, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  --color: #ffffff;
+}
+
+ion-alert .alert-button {
+  color: #e94560;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+ion-alert .alert-button.alert-button-role-destructive {
+  color: #ff3b3b;
+  font-weight: 600;
+}

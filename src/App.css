@@ -1,0 +1,50 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  height: 100%;
+  background-color: #1a1d2e;
+  position: relative;
+}
+
+ion-app {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+ion-content {
+  --background: transparent;
+}
+
+/* Smooth scrolling for mobile */
+ion-content {
+  --offset-bottom: auto!important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Smooth animations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button, ion-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+ion-item {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
