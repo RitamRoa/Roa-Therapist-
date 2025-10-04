@@ -406,13 +406,13 @@ ion-modal {
 }
 
 ion-modal::part(content) {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
-  border-radius: 28px 28px 0 0;
+  border-radius: 32px 32px 0 0;
   box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
-  margin: 60px 0 0 0;
-  padding-bottom: 30px;
+  margin: 40px 0 0 0;
+  padding-bottom: 40px;
   animation: slideUpModal 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -428,20 +428,24 @@ ion-modal::part(content) {
 }
 
 ion-modal ion-toolbar {
-  --background: rgba(0, 0, 0, 0.4);
+  --background: rgba(0, 0, 0, 0.5);
   --border-color: rgba(255, 255, 255, 0.1);
   --border-width: 0 0 1px 0;
+  --min-height: 64px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 ion-modal ion-title {
   font-weight: 600;
-  font-size: 22px;
+  font-size: 26px;
   color: #ffffff;
   letter-spacing: -0.5px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 8px 0;
 }
 
 /* Note Form Container */
@@ -454,7 +458,7 @@ ion-modal ion-title {
 }
 
 .modal-content {
-  padding: 28px 24px 20px 24px;
+  padding: 32px 28px 24px 28px;
   background: transparent;
 }
 
@@ -464,45 +468,47 @@ ion-modal ion-title {
   --padding-start: 0;
   --padding-end: 0;
   --padding-top: 0;
-  --padding-bottom: 18px;
-  font-size: 30px;
+  --padding-bottom: 20px;
+  font-size: 32px;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.5px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-  margin-bottom: 24px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 28px;
 }
 
 .note-title-input::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
   font-weight: 600;
+  font-size: 32px;
 }
 
 /* Note Content Input */
 .note-content-input {
-  --background: rgba(255, 255, 255, 0.08);
-  --padding-start: 18px;
-  --padding-end: 18px;
-  --padding-top: 18px;
-  --padding-bottom: 18px;
-  font-size: 17px;
+  --background: rgba(255, 255, 255, 0.1);
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  font-size: 18px;
   color: #ffffff;
-  letter-spacing: -0.3px;
-  line-height: 1.6;
+  letter-spacing: -0.2px;
+  line-height: 1.65;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-weight: 400;
-  border-radius: 18px;
+  border-radius: 20px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  min-height: 160px;
-  margin-bottom: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  min-height: 180px;
+  margin-bottom: 32px;
 }
 
 .note-content-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
+  font-size: 18px;
 }
 
 ion-item {
@@ -547,15 +553,15 @@ ion-input::placeholder, ion-textarea::placeholder {
 }
 
 ion-button.modal-action-button {
-  --border-radius: 20px;
+  --border-radius: 22px;
   --background: linear-gradient(135deg, #e94560 0%, #d63653 100%);
   --box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
-  height: 58px;
-  margin-top: 28px;
-  margin-bottom: 8px;
-  font-size: 18px;
+  height: 62px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 19px;
   font-weight: 600;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.3px;
   text-transform: none;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -573,60 +579,62 @@ ion-button.modal-action-button:active {
 
 /* Modal Tasks Section */
 .tasks-section {
-  margin-top: 12px;
-  padding: 28px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
+  margin-top: 16px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
 }
 
 .tasks-section h3 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 24px 0;
+  margin: 0 0 28px 0;
   letter-spacing: -0.5px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
 .add-task {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 28px;
   align-items: stretch;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
 }
 
 .add-task ion-input {
   flex: 1;
-  --padding-start: 16px;
-  --padding-end: 12px;
-  --padding-top: 14px;
-  --padding-bottom: 14px;
-  font-size: 16px;
+  --padding-start: 18px;
+  --padding-end: 14px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 17px;
   color: #ffffff;
   --background: transparent;
 }
 
 .add-task ion-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 17px;
 }
 
 .add-task ion-button {
   --background: linear-gradient(135deg, #e94560 0%, #d63653 100%);
   --background-hover: #d63653;
-  --border-radius: 14px;
+  --border-radius: 16px;
   --box-shadow: 0 2px 12px rgba(233, 69, 96, 0.4);
-  --padding-start: 18px;
-  --padding-end: 18px;
-  height: 50px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  height: 54px;
   margin: 0;
-  min-width: 50px;
+  min-width: 54px;
+  font-size: 26px;
 }
 
 .tasks-list {

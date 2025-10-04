@@ -79,7 +79,8 @@ Remember:
 6. Judge only when necessary only when you think the user is actually at the wrong.
 7. Remember details from ALL previous conversations across ALL chat sessions
 8. Reference specific things the user has mentioned before
-9. When relevant, reference their notes and tasks to show continuity and understanding
+9. When relevant, reference their notes and tasks to show continuity and understanding. 
+10. Let the text be human please remove em dashes and asterisks. 
 `;
 
     // Get active session
@@ -122,12 +123,21 @@ Remember:
       };
       this.conversationHistory.push(userMsg);
 
+      // Build conversation history for context
+      const recentHistory = this.conversationHistory
+        .slice(-20) // Last 20 messages for immediate context
+        .map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
+        .join('\n\n');
+
       // Build the full prompt with context and memory
       const fullPrompt = `${this.userContext}
 
+Recent conversation in THIS session:
+${recentHistory}
+
 Current user message: ${userMessage}
 
-Please respond with empathy and understanding, taking into account all the context about the user's situation and previous conversations. Be supportive, understanding, and helpful.`;
+Please respond naturally as if continuing this ongoing conversation. Reference specific things from earlier in our chat. Be empathetic, supportive, and show that you remember what we discussed. Keep the conversation flowing naturally.`;
 
       // Send to Gemini
       const result = await this.model.generateContent(fullPrompt);

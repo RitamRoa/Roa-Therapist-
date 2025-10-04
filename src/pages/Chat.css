@@ -307,8 +307,15 @@
 }
 
 .message-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .message-input::placeholder {
+    font-size: 15px;
+  }
 }
 
 .send-button {
