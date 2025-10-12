@@ -16,7 +16,7 @@ export interface Conversation {
   timestamp: number;
 }
 
-const API_KEY = '*';
+const API_KEY = 'AIzaSyDT0QLepq2LxcVUsm5JOkAcTFDGw_Yd4Mo';
 
 class GeminiService {
   private genAI: GoogleGenerativeAI;
@@ -141,8 +141,73 @@ Please respond naturally as if continuing this ongoing conversation. Reference s
 
       // Send to Gemini
       const result = await this.model.generateContent(fullPrompt);
-      const response = await result.response;
-      const text = response.text();
+
+      // Extract text from the model response with multiple fallbacks
+      let text = '';
+      try {
+        const response = result.response;
+        if (response) {
+          // Preferred method: response.text() (may be sync or Promise)
+          if (typeof response.text === 'function') {
+            const maybeText = response.text();
+            text = maybeText instanceof Promise ? await maybeText : maybeText;
+          } else if (typeof response === 'string') {
+            text = response;
+          } else if ((response as any).outputText) {
+            text = (response as any).outputText;
+          }
+        }
+      } catch (ex) {
+        console.error('Error while extracting text() from response', ex, { result });
+      }
+
+      // Additional fallbacks if text is still empty
+      if (!text) {
+        try {
+          if (result && (result as any).outputText) {
+            text = (result as any).outputText;
+          } else if (result && Array.isArray((result as any).output)) {
+            // Search for any textual content in result.output
+            for (const outItem of (result as any).output) {
+              if (!outItem || !outItem.content) continue;
+              const content = outItem.content;
+              // content may be an array of pieces
+              if (Array.isArray(content)) {
+                const piece = content.find((p: any) => p && (p.text || (p?.parts && p.parts.join)));
+                if (piece) {
+                  text = piece.text || (Array.isArray(piece.parts) ? piece.parts.join('') : '');
+                  if (text) break;
+                }
+              } else if (typeof content === 'string') {
+                text = content;
+                break;
+              }
+            }
+          } else if (result && (result as any).candidates && (result as any).candidates[0]) {
+            const cand = (result as any).candidates[0];
+            if (cand.content) {
+              if (Array.isArray(cand.content)) {
+                const t = cand.content.map((c: any) => c.text || (Array.isArray(c.parts) ? c.parts.join('') : '')).join('');
+                if (t) text = t;
+              } else if (typeof cand.content === 'string') {
+                text = cand.content;
+              }
+            }
+          }
+        } catch (ex) {
+          console.error('Fallback extraction failed', ex, { result });
+        }
+      }
+
+      if (!text) {
+        // If we still don't have text, log the raw result for debugging and use a friendly fallback reply
+        try {
+          console.error('Model returned no text. Full result object:', JSON.stringify(result, Object.getOwnPropertyNames(result)));
+        } catch (logEx) {
+          console.error('Model returned no text and failed to stringify result', logEx, result);
+        }
+        text = "I apologize, but I couldn't generate a response right now. Please try again in a moment.";
+      }
 
       // Add assistant response to history with unique ID
       const assistantTimestamp = Date.now();

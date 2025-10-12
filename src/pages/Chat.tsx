@@ -24,6 +24,7 @@ const Chat: React.FC = () => {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showNewChatAlert, setShowNewChatAlert] = useState(false);
+  const [showModelErrorAlert, setShowModelErrorAlert] = useState(false);
   const contentRef = useRef<HTMLIonContentElement>(null);
 
   useEffect(() => {
@@ -48,11 +49,16 @@ const Chat: React.FC = () => {
 
     try {
       // Get response from Gemini (it will add both user and assistant messages to history)
-      await geminiService.sendMessage(userMessage);
-      
+      const returnedText = await geminiService.sendMessage(userMessage);
+
       // Reload the conversation history to update UI
       const updatedHistory = geminiService.getConversationHistory();
       setMessages(updatedHistory);
+
+      // If the service returned the internal fallback message, show a friendly alert so user knows
+      if (typeof returnedText === 'string' && returnedText.includes("couldn't generate a response")) {
+        setShowModelErrorAlert(true);
+      }
     } catch (error) {
       console.error('Error sending message:', error);
       const errorTimestamp = Date.now();
@@ -136,12 +142,6 @@ const Chat: React.FC = () => {
             rows={1}
             maxlength={1000}
             className="message-input"
-            onKeyPress={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
           />
           <IonButton
             onClick={handleSend}
@@ -168,6 +168,13 @@ const Chat: React.FC = () => {
             handler: handleNewChat,
           },
         ]}
+      />
+      <IonAlert
+        isOpen={showModelErrorAlert}
+        onDidDismiss={() => setShowModelErrorAlert(false)}
+        header="Temporary Issue"
+        message="The assistant couldn't generate a response right now. Please try again in a moment."
+        buttons={[{ text: 'OK', role: 'cancel' }]}
       />
     </IonPage>
   );
