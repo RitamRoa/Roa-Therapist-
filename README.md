@@ -4,7 +4,7 @@ Your personal mental health companion with memory - an AI-powered app that remem
 
 ## Features ✨
 
-- **🤖 AI-Powered Conversations**: Powered by Google's Gemini 2.5 Flash AI for empathetic and understanding responses
+- **🤖 AI-Powered Conversations**: Powered by Google's Gemini 1.5 Flash AI for empathetic and understanding responses
 - **🧠 Memory System**: Remembers your previous conversations and learns from them
 - **� Notes & Tasks**: Integrated notes system that AI can reference during conversations
 - **�💾 Persistent Storage**: All conversations, notes, and tasks saved locally on your device
